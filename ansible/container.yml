@@ -64,7 +64,7 @@ services:
   nginx:
     image: centos:7
     ports:
-    - {{ DJANGO_PORT }}:8000 
+    - '{{ DJANGO_PORT }}:8000'
     user: nginx
     links:
     - django
