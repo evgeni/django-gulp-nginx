@@ -14,7 +14,7 @@ defaults:
 services:
   
   django:
-    image: centos:7
+    from: centos:7
     environment:
       DATABASE_URL: pgsql://{{ POSTGRES_USER }}:{{ POSTGRES_PASSWORD }}@postgresql:5432/{{
         POSTGRES_DB }}
@@ -40,7 +40,7 @@ services:
         runAsUser: 1000
 
   gulp:
-    image: centos:7
+    from: centos:7
     user: '{{ NODE_USER }}'
     working_dir: '{{ NODE_HOME }}'
     command: ['/bin/false']
@@ -62,7 +62,7 @@ services:
         state: absent
 
   nginx:
-    image: centos:7
+    from: centos:7
     ports:
     - '{{ DJANGO_PORT }}:8000'
     user: nginx
@@ -77,7 +77,7 @@ services:
         runAsUser: 1000 
 
   postgresql:
-    image: ansible/postgresql:latest
+    from: ansible/postgresql:latest
     environment:
     - POSTGRES_DB={{ POSTGRES_DB }}
     - POSTGRES_USER={{ POSTGRES_USER }}
